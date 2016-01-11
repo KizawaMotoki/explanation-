@@ -42,31 +42,61 @@ void draw () {
   } 
 
 
-  void expl (int a, int b ) {        //a,bは説明欄が出てくる座標
+  class Explanation{
+  int a;
+  int b;
+  int c;
+  int d;
+  Explanation(int pa,int pb,int pc,int pd){
+    //初期化するときに値を決めます
+    init();
+  }
+  void init(){
+    a=pa;
+    b=pb;
+    c=pc;
+    d=pd;
+  }
+    void expl () {        //a,bは説明欄が出てくる座標
     fill(30, 30, 30);
     rect(a, b, a+100, b+75);              //欄を作る
     
     fill(0);
     textSize(2);
-    text("そのボタンの説明", a+2, b+2);   //説明文
+   // text("そのボタンの説明", a+2, b+2);   //説明文
     
     fill(100, 10, 10);
     ellipse(a+97, b+72);
     fill(0);
-    textSize(2);
-    text("Ex", a+95, b+72);                //押す例が示されるボタン      
-  }    
-
-
-
- void exam (int c, int d ){             //c,dは例が出てくる座標
+     
+  }   
+   void exam (){             //c,dは例が出てくる座標
    fill(255);
    rect(c,d,c+75, d+100 );                  //欄を作る
    
    fill(0);
     textSize(2);
-    text("そのボタンの説明", a+2, b+2);   //説明文
+   // text("そのボタンの説明", a+2, b+2);   //説明文
    
  }
- 
+}
+
+//こっちがdraw内で出力するクラス
+class PoolExplain extends Explaination{
+  PoolExplain(){
+    super.init();
+  }
+  void expl(){
+    super.expl();
+    //変えたい部分だけここで書き分ける
+    textSize(2);
+    text("Ex", a+95, b+72);                //押す例が示されるボタン     
+    text("そのpoolボタンの説明", a+2, b+2);
+  }
+  void exam(){
+    super.exam();
+    //変えたい部分だけここで書き分ける
+    //exam自体が必要ないなら上のsuper.exam()ごと消しておく
+    text("そのボタンの説明", a+2, b+2);
+  }
 
